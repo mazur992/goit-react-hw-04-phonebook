@@ -20,18 +20,18 @@ export class App extends Component {
     const { name, value } = event.target;
     this.setState({ [name]: value });
   };
-  handleBtnNameSubmit = data => {
+  handleBtnNameSubmit = (nameData, numberData) => {
     const { contacts } = this.state;
-    const isInclude = contacts.find(contact => contact.name === data.name);
+    const isInclude = contacts.find(contact => contact.name === nameData);
 
     if (isInclude) {
-      Report.info(data.name + ' Is already in contacts!');
+      Report.info(nameData + ' Is already in contacts!');
       return;
     }
     this.setState(prevState => ({
       contacts: [
         ...prevState.contacts,
-        { name: data.name, id: nanoid(), number: data.number },
+        { name: nameData, id: nanoid(), number: numberData },
       ],
     }));
   };
